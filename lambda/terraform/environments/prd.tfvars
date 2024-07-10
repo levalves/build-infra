@@ -1,0 +1,7 @@
+# customer_code = "its"
+# environment = "prd"
+# region = "sa-east-1"
+# application = "smartbenefits-api"
+# runtime_python = "python3.12"
+# handler_ec2 = "StartStopEc2.lambda_handler"
+# handler_rds = "StartStopPostgreSQL.lambda_handler"

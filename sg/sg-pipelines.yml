@@ -1,0 +1,86 @@
+trigger:
+  - main
+  - develop
+
+variables:
+  - group: AWS_VAR
+  - group: git-credentials
+
+pool:
+  name: Agent-Portal-Beneficios
+
+stages:
+  - stage: Check_Install_and_Set_dependencies
+    displayName: "Check Install and Set dependencies"
+    jobs:
+      - job: Build
+        displayName: "Check Install and Set dependencies"
+        steps:
+          - task: Bash@3
+            displayName: "Check Install and Set dependencies"
+            inputs:
+              targetType: "inline"
+              script: |
+                cd $(Build.SourcesDirectory)/sg
+                git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+                echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+                echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
+                export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
+                source ~/.profile
+
+                if asdf plugin-list | grep -q awscli; then
+                  echo "awscli plugin already installed"
+                else
+                  echo "Install asdf awscli plugin"
+                  asdf plugin-add awscli https://github.com/MetricMike/asdf-awscli.git
+                fi
+
+                if asdf plugin-list | grep -q terraform; then
+                  echo "terraform plugin already installed"
+                else
+                  echo "Install-asdf terraform plugin"
+                  asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
+                fi
+
+                asdf install
+
+  - stage: Terraform_Build_Infra_SG
+    displayName: "Terraform Build Infra - SG"
+    jobs:
+      - job: Terraform_SG_Production
+        displayName: "Terraform SG Production"
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+        steps:
+          - task: Bash@3
+            displayName: "Terraform SG Production"
+            inputs:
+              targetType: "inline"
+              script: |
+                export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
+                source ~/.profile
+                export GIT_TOKEN=$(GIT_TOKEN)
+                export AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID)
+                export AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY)
+                export ENV=$(ENV_PRD)
+                export AWS_DEFAULT_REGION=$(AWS_PRD_REGION)
+                cd $(Build.SourcesDirectory)/sg
+                ./build.sh deploy
+
+      - job: Terraform_SG_Develop
+        displayName: "Terraform SG Develop"
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+        steps:
+          - task: Bash@3
+            displayName: "Terraform SG Develop"
+            inputs:
+              targetType: "inline"
+              script: |
+                export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
+                source ~/.profile
+                export GIT_TOKEN=$(GIT_TOKEN)
+                export AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID)
+                export AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY)
+                export ENV=$(ENV_DEV)
+                export AWS_DEFAULT_REGION=$(AWS_DEV_REGION)
+                cd $(Build.SourcesDirectory)/sg
+                ./build.sh deploy

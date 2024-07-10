@@ -1,0 +1,12 @@
+### TERRAFORM ###
+*/terraform/.terraform
+*/terraform/terraform.tfstate.d
+*/terraform/terraform.tfstate
+*/terraform/tfplan-*
+*/terraform/.terraform_init.lock
+*/terraform/.terraform.lock.hcl
+*/terraform/builds*
+2024*
+*/build-tools/
+*/build.log
+
