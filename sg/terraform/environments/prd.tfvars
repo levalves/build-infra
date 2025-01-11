@@ -1,6 +1,6 @@
-# customer_code = "its"
+# customer_code = "lev"
 # region = "sa-east-1"
-# application = "smartbenefits-api"
+# application = "levinux"
 
 # azs = ["sa-east-1a", "sa-east-1b"]
 # vpc_id = "vpc-0b468fc10272696b2"

@@ -11,7 +11,7 @@ variable "azs" {}
 
 ########### TAGs #############
 variable "product" {
-  default = "smartbenefits"
+  default = "levalves"
 }
 
 variable "terraform" {

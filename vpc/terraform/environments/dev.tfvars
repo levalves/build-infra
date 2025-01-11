@@ -1,7 +1,7 @@
-customer_code = "its"
+customer_code = "lev"
 region = "us-east-2"
 environment = "dev"
-application = "smartbenefits-api"
+application = "levinux"
 
 azs = ["us-east-2a", "us-east-2b"]
 vpc_cidr_01 = "10.10.0.0/19"

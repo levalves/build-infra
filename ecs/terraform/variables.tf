@@ -5,7 +5,7 @@ variable "customer_code" {}
 
 ########### TAGs #############
 variable "product" {
-  default = "smartbenefits"
+  default = "levalves"
 }
 
 variable "terraform" {

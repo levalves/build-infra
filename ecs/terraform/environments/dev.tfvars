@@ -1,3 +1,3 @@
-customer_code = "its"
+customer_code = "lev"
 region = "us-east-2"
-application = "smartbenefits-api"
+application = "levinux"

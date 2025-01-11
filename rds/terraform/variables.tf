@@ -37,7 +37,7 @@ variable "postgresql_parameter_group" {}
 
 ########### TAGs #############
 variable "product" {
-  default = "smartbenefits"
+  default = "levalves"
 }
 
 variable "terraform" {

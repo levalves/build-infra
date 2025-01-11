@@ -3,7 +3,7 @@ set -eo pipefail
 #set -x
 
 if [ ! -d "$PWD/build-tools" ]; then
-   git clone --single-branch --branch v1 https://token:$GIT_TOKEN@dev.azure.com/Itsseg/Portal-Beneficios-v2/_git/build-tools "$PWD/build-tools"
+   git clone --single-branch --branch v1 https://token:$GIT_TOKEN@dev.azure.com/levalves/Portal-Beneficios-v2/_git/build-tools "$PWD/build-tools"
 fi
 
 __BUILD_TOOLS_PATH="./build-tools"
@@ -31,9 +31,9 @@ f_get_region(){
 
 f_get_role() {
   if [ "$ENV" == "prd" ]; then
-    ROLE="arn:aws:iam::851725266626:role/CrossAccount-itsseg-Prod"
+    ROLE="arn:aws:iam::851725266626:role/CrossAccount-levalves-Prod"
   else
-    ROLE="arn:aws:iam::851725266626:role/CrossAccount-itsseg-NonProd"
+    ROLE="arn:aws:iam::851725266626:role/CrossAccount-levalves-NonProd"
   fi
   echo $ROLE
 }

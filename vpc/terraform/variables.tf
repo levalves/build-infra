@@ -12,7 +12,7 @@ variable "private_subnets_vpc_cidr_01" {}
 
 ########### TAGs #############
 variable "product" {
-  default = "smartbenefits"
+  default = "levalves"
 }
 
 variable "terraform" {

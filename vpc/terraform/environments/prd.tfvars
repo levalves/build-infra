@@ -1,7 +1,7 @@
-# customer_code = "its"
+# customer_code = "lev"
 # region = "sa-east-1"
 # environment = "prd"
-# application = "smartbenefits-api"
+# application = "levinux"
 
 # azs = ["sa-east-1a", "sa-east-1b"]
 # vpc_cidr_01 = "10.0.0.0/19"

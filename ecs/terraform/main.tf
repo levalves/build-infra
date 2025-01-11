@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     region = "us-east-2"
-    bucket = "itsseg-terraform-tfstates"
+    bucket = "levalves-terraform-tfstates"
     key    = "build-infra/ecs/terraform.tfstate"
   }
 }

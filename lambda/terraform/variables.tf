@@ -9,7 +9,7 @@ variable "handler_rds" {}
 
 ########### TAGs #############
 variable "product" {
-  default = "smartbenefits"
+  default = "levalves"
 }
 
 variable "terraform" {

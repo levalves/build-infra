@@ -1,4 +1,4 @@
-# customer_code = "its"
+# customer_code = "lev"
 # region = "sa-east-1"
-# application = "smartbenefits-api"
+# application = "levinux"
 

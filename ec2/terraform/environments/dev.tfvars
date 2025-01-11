@@ -1,6 +1,6 @@
-customer_code = "its"
+customer_code = "lev"
 region = "us-east-2"
-application = "smartbenefits-api"
+application = "levinux"
 
 azs = ["us-east-2a", "us-east-2b"]
 vpc_id = "vpc-042e301ff0860ca07"
